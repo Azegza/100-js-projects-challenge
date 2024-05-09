@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>HEX Color Changer</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+    :root{
+        --main-font : "Sedan SC", serif;
+    }
+    .container{
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: var(--main-font);
+        width: 90%;
+        
+        
+    }
+    .hexcolors{
+        text-align: center;
+    }
+    .hexcolors h1{
+        text-transform: uppercase;
+        font-size: 2rem;
+        animation: colorchange 5s infinite;
+    }
+    .hexcolors h2{
+        border:  1px solid black;
+        margin-top: 15%;
+    }
+    @keyframes colorchange{
+        0%{
+            color: blue;
+        }
+        20%{
+            color: indigo;
+        }
+
+        40%{
+            color: green;
+        }
+
+        60%{
+            color: yellowgreen;
+        }
+
+        80%{
+            color: pink;
+        }
+        100%{
+            color: purple;
+        }
+
+
+    }
+    @media (max-width: 480px){
+        .hexcolors h1{
+            font-size: 1.5rem;
+        }
+        .hexcolors h2{
+            font-size: 1rem;
+        }
+    }
+    button{
+    
+    }    
+    
+
+    
+</style>
+<body>
+    <section>
+        <div class="container">
+            <div class="hexcolors">
+
+                <h1>Click the button to display the hex code of the background color </h1>
+                <h2>The hex code of the code color is  <span id="hex-code">#000000</span></h2>
+
+            </div>
+            <button  onclick="changeColor()" class="btn btn-success" >Show Hex code </button>
+
+
+        </div>  
+      </section>
+      
+</body>
+<script>
+    function changeColor (){
+        let hexNumbers=["0","1","2","3","4","5","6","7","8","9","A", "B", "C", "D", "E", "F"];
+        let hexCode = '';
+        for ( var i = 0; i < 6; i++){ // to iterate over the array and pick a random item
+            randomIndex = Math.floor(Math.random() * hexNumbers.length); 
+     
+        hexCode += hexNumbers[randomIndex]; // return an index value and concatinate it to the hexCode variable
+        }
+        document.getElementById('hex-code').innerHTML = "#" + hexCode; // this line shows the value of  the hexcode varible in the span tag with the id hex-code
+        document.getElementsByTagName('body')[0].style.background = "#"+hexCode;  // this line changes the color of the background with the generated hexcode
+    }
+</script>
+</html>
